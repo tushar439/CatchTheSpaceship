@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CATCH</title>
+</head>
+<body background="https://apod.nasa.gov/apod/image/1611/HeartSoul_Lindemann_1280.jpg" height="100%">
+<div id="spaceship">
+	<div class="flames"></div>
+  <div class="flames-2"></div>
+</div>
+
+<style type="text/css">
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	#spaceship{
+		position: fixed;
+		height: 100px;
+		width: 100px;
+		background-color: rgba(248, 239, 190, 1.0);
+  		border: 5px solid rgba(129, 30, 14, 1.0);
+  		border-radius: 100px;
+  		box-shadow: 9px -9px 0px -3px rgba(205, 179, 68, 1.0) inset;
+	}
+	*, 
+*:before, 
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+	.spaceship:before,
+.spaceship:after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 26px;
+  background-color: rgba(129, 30, 14, 1.0);
+	-webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border-top-left-radius: 20px 50px;
+  border-top-right-radius: 20px 50px;
+  border-bottom-left-radius: 10px 2px;
+  border-bottom-right-radius: 10px 2px;
+  z-index: -1;
+}
+.spaceship:before {
+  top: 0px;
+  left: 0px;
+  box-shadow: 2px 0px rgba(129, 30, 14, 1.0) inset,
+    					0px 4px rgba(129, 30, 14, 1.0) inset,
+    					0px -3px rgba(129, 30, 14, 1.0) inset,
+    					4px 0px 0px rgba(250, 106, 62, 1.0) inset,
+    					95px 0px rgba(129, 30, 14, 1.0);
+  z-index: -2;
+}
+.spaceship:after {
+  top: 39px;
+  left: 29px;
+  box-shadow: 2px 0px rgba(129, 30, 14, 1.0) inset,
+    					0px 4px rgba(129, 30, 14, 1.0) inset,
+    					0px -2px rgba(129, 30, 14, 1.0) inset,
+  						6px 0px rgba(250, 106, 62, 1.0) inset;
+  z-index: 1;
+}
+
+.flames,
+.flames:before {
+  position: absolute;
+  width: 14px;
+  height: 100px;
+  background-color: rgba(205, 179, 68, 1.0);
+  border-bottom-left-radius: 	7px 90px;
+  border-bottom-right-radius: 7px 90px;
+  box-shadow: 0px -30px 0px 5px rgba(248, 239, 190, 1.0) inset;
+}
+.flames {
+  top: 8px;
+  left: -41px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: -2;
+}
+.flames:before {
+  content: '';
+  top: 0px;
+  left: 94px;
+}
+
+.flames-2 {
+  position: absolute;
+  top: 41px; left: -22px;
+  height: 130px;
+  width: 14px;
+  border-bottom-left-radius: 	40px 500px;
+  border-bottom-right-radius: 40px 500px;
+  background-color: rgba(205, 179, 68, 1.0);
+  border: 5px solid rgba(248, 239, 190, 1.0);
+  border-top: none;
+  border-bottom: 40px solid rgba(248, 239, 190, 1.0);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.flames-2:before {
+  content: '';
+  position: absolute;
+  top: -13px; 
+  left: -34px;
+  width: 7px;
+  height: 7px;
+  background-color: rgba(129, 30, 14, 1.0);
+  border-radius: 7px;
+  box-shadow: 11px 10px 0px 0px rgba(129, 30, 14, 1.0),
+    					54px 10px rgba(129, 30, 14, 1.0),
+    					64px 0px rgba(129, 30, 14, 1.0);
+}
+
+
+
+	body{
+		height: 100vh;
+		width: 100vw;
+	}
+</style>
+
+<script type="text/javascript">
+	
+function getEbI(id){
+	return document.getElementById(id);
+}
+
+var element = getEbI('spaceship');
+element.style.top = '0px';
+element.style.left = '0px';
+
+var number;
+
+
+function runAway(event){
+	console.log(event);
+	var maxHeight = document.body.clientHeight;
+	var maxWidth = document.body.clientWidth;
+	var newTop = Math.random() * maxHeight - 50;
+	var newLeft = Math.random() * maxWidth -50;
+	
+
+	var oldTop = parseFloat(element.style.top.slice(0,-2));
+	var oldLeft = parseFloat(element.style.left.slice(0,-2));;
+
+	var deltaTop = (newTop - oldTop)/100.0;
+	var deltaLeft = (newLeft - oldLeft)/100.0;
+
+
+
+
+	if(number != null){
+		clearInterval(number);
+	}
+
+	number = setInterval(function(){
+
+
+
+
+
+	var currentTop = parseFloat(element.style.top.slice(0,-2));
+	var currentLeft = parseFloat(element.style.left.slice(0,-2));
+
+	console.log(currentTop);
+	console.log(newTop);
+	mod = currentTop - newTop;
+	if (mod < 0){
+		mod = -1 * mod;
+	}
+
+	if(mod < 0.1){
+		clearInterval(number);
+	}
+
+
+	tempTop =(currentTop + deltaTop) ;
+	tempLeft = (currentLeft + deltaLeft) 
+
+
+
+	element.style.top = tempTop + 'px';
+	element.style.left = tempLeft + 'px' ;
+	},5);
+
+	// 	console.log(oldTop);
+	// 	console.log(oldLeft);
+
+	// 	console.log(deltaLeft);
+	// 	console.log(deltaTop);
+
+	// for(var i=0; i<100;i++){
+	// 	tempTop =(oldTop + i * deltaTop) ;
+	// 	tempLeft = (oldLeft + i * deltaLeft) 
+	// 	// console.log(tempTop);
+	// 	// console.log(tempLeft);
+
+	// 	element.style.top = tempTop + 'px';
+	//     element.style.left = tempLeft + 'px' ;
+	// }
+
+
+	
+
+}
+
+element.addEventListener('mouseover', runAway);
+
+
+</script>
+</body>
+
+</html>
